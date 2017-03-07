@@ -2,23 +2,17 @@ package Main;
 
 import javax.swing.table.DefaultTableModel;
 
-public class TripTableModel extends DefaultTableModel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3176216830997803136L;
-
-	static String[] columnNames = {"Trip Type",
-			"Arranged By",
-			"Transport",
-			"Venue",
-			"Sundry Costs"};
+public class StudentTableModel extends DefaultTableModel {
+	static String[] columnNames = {"First Name",
+			"Last Name",
+			"Mobile Number",
+			"Has Authority?"};
 	
 	static String[][] rowData = {
 			
 	};
 	
-	public TripTableModel() {
+	public StudentTableModel() {
 		for (int i = 0; i < columnNames.length; ++i) {
 			this.addColumn(columnNames[i]);
 		}
@@ -43,5 +37,4 @@ public class TripTableModel extends DefaultTableModel {
 	public String getColumnName(final int index) {
 		return columnNames[index];
 	}
-	
 }

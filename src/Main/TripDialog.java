@@ -2,7 +2,9 @@ package Main;
 
 import javax.swing.JDialog;
 import javax.swing.SpringLayout;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 import java.awt.Dimension;
 
@@ -14,6 +16,11 @@ import java.awt.event.ActionEvent;
 
 public class TripDialog extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2629552485008460364L;
+	
 	String[] tripTypeArray = {
 			"Single Day",
 			"Residential"
@@ -26,7 +33,13 @@ public class TripDialog extends JDialog {
 	private JTextField venueTxtField;
 	private JTextField sundryTxtField;
 	
-	public TripDialog(){
+	
+	
+	private JTable table = new JTable();
+	
+	public TripDialog(JTable table){
+		this.table = table;
+		
 		this.setSize(new Dimension(960, 540));
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
@@ -97,7 +110,10 @@ public class TripDialog extends JDialog {
 		JButton btnAddTrip = new JButton("Add Trip");
 		btnAddTrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//model.insertRow(model.getRowCount(), new Object[]);
+				DefaultTableModel defModel = (DefaultTableModel)table.getModel();
+				defModel.addRow(new Object[]{tripTypeCombo.getSelectedItem(), arrangedByCombo.getSelectedItem(), 
+						transportTxtField.getText(), venueTxtField.getText(), sundryTxtField.getText()});
+				dispose();
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnAddTrip, 0, SpringLayout.NORTH, btnClose);
