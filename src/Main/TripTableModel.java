@@ -8,7 +8,9 @@ public class TripTableModel extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = -3176216830997803136L;
 
-	static String[] columnNames = {"Trip Type",
+	static String[] columnNames = {
+			"Trip ID",
+			"Trip Type",
 			"Arranged By",
 			"Transport",
 			"Venue",

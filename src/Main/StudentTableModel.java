@@ -6,7 +6,8 @@ public class StudentTableModel extends DefaultTableModel {
 	static String[] columnNames = {"First Name",
 			"Last Name",
 			"Mobile Number",
-			"Has Authority?"};
+			"Has Authority?",
+			"Linked Trip"};
 	
 	static String[][] rowData = {
 			

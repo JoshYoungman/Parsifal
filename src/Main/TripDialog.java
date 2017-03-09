@@ -32,8 +32,8 @@ public class TripDialog extends JDialog {
 	private JTextField transportTxtField;
 	private JTextField venueTxtField;
 	private JTextField sundryTxtField;
-	
-	
+	private static int instanceCounter = 0;
+	private int tripCounter = 0;
 	
 	private JTable table = new JTable();
 	
@@ -111,7 +111,11 @@ public class TripDialog extends JDialog {
 		btnAddTrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel defModel = (DefaultTableModel)table.getModel();
-				defModel.addRow(new Object[]{tripTypeCombo.getSelectedItem(), arrangedByCombo.getSelectedItem(), 
+	
+				instanceCounter++;
+				tripCounter = instanceCounter;
+
+				defModel.addRow(new Object[]{tripCounter,tripTypeCombo.getSelectedItem(), arrangedByCombo.getSelectedItem(), 
 						transportTxtField.getText(), venueTxtField.getText(), sundryTxtField.getText()});
 				dispose();
 			}

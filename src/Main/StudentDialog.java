@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 public class StudentDialog extends JDialog {
@@ -21,12 +22,15 @@ public class StudentDialog extends JDialog {
 	private JTextField firstNameTxtField;
 	private JTextField lastNameTxtField;
 	private JTextField mobileNumberTxtField;
+	private Object tripIDVal;
 	
 	private JTable table;
 	
-	public StudentDialog(JTable table) {
+	public StudentDialog(JTable table, Object tripIDVal) {
 		this.table = table;
+		this.tripIDVal = tripIDVal;
 		
+		this.setSize(new Dimension(555, 423));
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
@@ -88,7 +92,7 @@ public class StudentDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel defModel = (DefaultTableModel)table.getModel();
 				defModel.addRow(new Object[]{firstNameTxtField.getText(), lastNameTxtField.getText(), 
-						mobileNumberTxtField.getText(), hasAuthorityCombo.getSelectedItem()});
+						mobileNumberTxtField.getText(), hasAuthorityCombo.getSelectedItem(),tripIDVal});
 				dispose();
 			}
 		});
