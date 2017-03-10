@@ -43,6 +43,7 @@ public class GUI extends JFrame {
 		
 		JButton btnAddTrip = new JButton("Add Trip");
 		springLayout.putConstraint(SpringLayout.NORTH, btnAddTrip, 0, SpringLayout.NORTH, scrollPane);
+		springLayout.putConstraint(SpringLayout.EAST, btnAddTrip, -10, SpringLayout.EAST, getContentPane());
 		btnAddTrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TripDialog tripDialog = new TripDialog(tripJTable);
@@ -56,8 +57,6 @@ public class GUI extends JFrame {
 		scrollPane.setViewportView(tripJTable);
 		
 		JButton btnAddStudent = new JButton("Add Student");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnAddStudent, -201, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnAddTrip, 0, SpringLayout.EAST, btnAddStudent);
 		springLayout.putConstraint(SpringLayout.EAST, btnAddStudent, -10, SpringLayout.EAST, getContentPane());
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -91,6 +90,7 @@ public class GUI extends JFrame {
 		scrollPane_1.setViewportView(studentJTable);
 		
 		JButton btnRemoveTrip = new JButton("Remove Trip");
+		springLayout.putConstraint(SpringLayout.NORTH, btnAddStudent, 21, SpringLayout.SOUTH, btnRemoveTrip);
 		springLayout.putConstraint(SpringLayout.NORTH, btnRemoveTrip, 6, SpringLayout.SOUTH, btnAddTrip);
 		springLayout.putConstraint(SpringLayout.EAST, btnRemoveTrip, 0, SpringLayout.EAST, btnAddTrip);
 		btnRemoveTrip.addActionListener(new ActionListener() {
@@ -117,5 +117,30 @@ public class GUI extends JFrame {
 			}
 		});
 		getContentPane().add(btnRemoveStudent);
+		
+		JButton btnViewStudents = new JButton("View Students");
+		btnViewStudents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int selectedRow = tripJTable.getSelectedRow();
+				Object tripIDVal = tripJTable.getModel().getValueAt(selectedRow, 0);
+				LinkedTableModel linkedTableModel = new LinkedTableModel();
+				
+				for (int i = 0; i < studentJTable.getModel().getRowCount(); ++i){
+					Object studentValue = studentJTable.getModel().getValueAt(i, 4);
+					if ((int)studentValue == (int)tripIDVal) {
+						linkedTableModel.addRow(new Object[]{
+								studentJTable.getModel().getValueAt(i, 0),
+								studentJTable.getModel().getValueAt(i, 1),
+								studentJTable.getModel().getValueAt(i, 2),
+								studentJTable.getModel().getValueAt(i, 3)});
+					}
+				}
+				LinkedTableGUI linkedTableGUI = new LinkedTableGUI(tripIDVal, linkedTableModel);
+				linkedTableGUI.setVisible(true);				
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, btnViewStudents, 24, SpringLayout.SOUTH, btnRemoveStudent);
+		springLayout.putConstraint(SpringLayout.EAST, btnViewStudents, 0, SpringLayout.EAST, btnAddTrip);
+		getContentPane().add(btnViewStudents);
 	}
 }
