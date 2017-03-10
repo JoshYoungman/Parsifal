@@ -7,6 +7,9 @@ import javax.swing.SpringLayout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LinkedTableGUI extends JFrame {
 	
@@ -14,7 +17,7 @@ public class LinkedTableGUI extends JFrame {
 	
 	public LinkedTableGUI(Object tripIDVal, DefaultTableModel tableModel) {
 		setTitle("Students Linked to Trip");
-		this.setSize(new Dimension(632, 540));
+		this.setSize(new Dimension(611, 540));
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
@@ -27,5 +30,15 @@ public class LinkedTableGUI extends JFrame {
 		linkedTable = new JTable();
 		linkedTable.setModel(tableModel);
 		scrollPane.setViewportView(linkedTable);
+		
+		JButton btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.SOUTH, btnClose, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnClose, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(btnClose);
 	}
 }
