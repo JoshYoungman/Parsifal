@@ -15,26 +15,35 @@ public class LinkedTableGUI extends JFrame {
 	
 	private JTable linkedTable;
 	
+	/**
+	 * This is a window used to display the students linked to the trip selected, before clicking the
+	 * 'View Students' button
+	 * 
+	 * @param tripIDVal - The trip id value held in the trip table.
+	 * @param tableModel - DefaultTableModel
+	 */
+	
 	public LinkedTableGUI(Object tripIDVal, DefaultTableModel tableModel) {
-		setTitle("Students Linked to Trip");
-		this.setSize(new Dimension(611, 540));
+		setTitle("Students Linked to Trip");// Sets the title of the window
+		this.setSize(new Dimension(611, 540)); // Sets the dimentions of the window
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane(); // Creates an instance of the scroll pane
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(scrollPane);
 		
-		linkedTable = new JTable();
-		linkedTable.setModel(tableModel);
-		scrollPane.setViewportView(linkedTable);
+		linkedTable = new JTable(); // Creates an instance of the linkedTable
+		linkedTable.setModel(tableModel); // Sets the model of the linkedTable
+		scrollPane.setViewportView(linkedTable); // Sets the linkedTable to a scroll pane
 		
-		JButton btnClose = new JButton("Close");
+		JButton btnClose = new JButton("Close"); // Creates an instance of the close button
+		btnClose.setToolTipText("Closes the current dialog"); // Close button dialog
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
+				dispose(); // Closes the window
 			}
 		});
 		springLayout.putConstraint(SpringLayout.SOUTH, btnClose, -10, SpringLayout.SOUTH, getContentPane());
