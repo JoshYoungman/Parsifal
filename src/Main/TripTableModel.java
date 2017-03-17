@@ -18,6 +18,7 @@ public class TripTableModel extends DefaultTableModel {
 			"Arranged By",
 			"Transport",
 			"Venue",
+			"Accomodation",
 			"Sundry Costs"}; // Column names held in the trip table
 	
 	/**

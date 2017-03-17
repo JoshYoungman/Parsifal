@@ -32,6 +32,7 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(lblApplication);
 		
 		JTextArea applicationTxtArea = new JTextArea(); // Creates an instance of the text area
+		applicationTxtArea.setEditable(false); // Prevents editing the text area
 		applicationTxtArea.setLineWrap(true); // Wraps the text held in the JTextArea
 		applicationTxtArea.setWrapStyleWord(true); // Prevents words from being split when the text wraps
 		applicationTxtArea.setText("This software is used to create trips for Parsifal College and add students to "
@@ -42,6 +43,7 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(lblCreatingATrip);
 		
 		JTextArea tripTxtArea = new JTextArea(); // Creates an instance of the text area
+		tripTxtArea.setEditable(false); // Prevents editing the text area
 		tripTxtArea.setText("To create a trip, left click on the 'Add Trip' button. A dialog will be displayed"
 				+ " where you area able to add information about the said trip. Once the information has been added,"
 				+ " click the 'Add Trip' button on the dialog.");
@@ -53,6 +55,7 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(lblAddingAStudent);
 		
 		JTextArea studentTxtArea = new JTextArea(); // Creates an instance of the text area
+		studentTxtArea.setEditable(false); // Prevents editing the text area
 		studentTxtArea.setText("To add a student, left click on an already inputted trip and left click the 'Add Student' button."
 				+ " A dialog will be displayed where you are able to add information about the said student. Once the information"
 				+ " has been added, click the 'Add Student' button on the dialog.");
@@ -64,6 +67,7 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(lblViewLinkedStudents);
 		
 		JTextArea linkedTxtArea = new JTextArea(); // Creates an instance of the text area
+		linkedTxtArea.setEditable(false); // Prevents editing the text area
 		linkedTxtArea.setText("To view linked students, left click on a trip in the trip table that has had student linked to it"
 				+ " (if a trip with no students is selected, an empty table will be displayed). Once a trip is selected,"
 				+ " left click on the 'View Students' button. A dialog will be displayed with a table displaying all of the"
@@ -76,6 +80,7 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(lblRemoveTripstudent);
 		
 		JTextArea removeTxtArea = new JTextArea(); // Creates an instance of the text area
+		removeTxtArea.setEditable(false); // Prevents editing the text area 
 		removeTxtArea.setText("To remove a trip or student, left click on a trip/student so the row becomes highlighted."
 				+ " Left click on the respective remove button.");
 		removeTxtArea.setLineWrap(true); // Wraps the text held in the JTextArea
@@ -83,6 +88,7 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(removeTxtArea);
 		
 		JButton btnClose = new JButton("Close"); // Creates an instance of the close button
+		btnClose.setToolTipText("Closes the program."); // Close button tooltip
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

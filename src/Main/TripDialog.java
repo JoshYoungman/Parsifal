@@ -37,6 +37,7 @@ public class TripDialog extends JDialog {
 	private JTextField sundryTxtField;
 	private static int instanceCounter = 0;
 	private int tripCounter = 0;
+	private JTextField accommodationTxtField;
 	
 	/**
 	 * This Dialog is used to input data into the specified columns in the trip table.
@@ -46,7 +47,7 @@ public class TripDialog extends JDialog {
 	
 	public TripDialog(JTable table){
 		
-		this.setSize(new Dimension(960, 540)); // Sets the size of the dialog
+		this.setSize(new Dimension(641, 480)); // Sets the size of the dialog
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
@@ -92,14 +93,13 @@ public class TripDialog extends JDialog {
 		getContentPane().add(venueTxtField);
 		venueTxtField.setColumns(10);
 		
-		JLabel lblSundryCosts = new JLabel("Sundry Costs:"); // Creates an instance of the Label
-		springLayout.putConstraint(SpringLayout.NORTH, lblSundryCosts, 15, SpringLayout.SOUTH, venueTxtField);
-		springLayout.putConstraint(SpringLayout.WEST, lblSundryCosts, 10, SpringLayout.WEST, getContentPane());
+		JLabel lblSundryCosts = new JLabel("Sundry Costs:");
+		springLayout.putConstraint(SpringLayout.WEST, lblSundryCosts, 0, SpringLayout.WEST, lblTripType);
 		getContentPane().add(lblSundryCosts);
 		
-		sundryTxtField = new JTextField(); // Creates an instance of the Text field
+		sundryTxtField = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, sundryTxtField, 0, SpringLayout.NORTH, lblSundryCosts);
-		springLayout.putConstraint(SpringLayout.WEST, sundryTxtField, 6, SpringLayout.EAST, lblSundryCosts);
+		springLayout.putConstraint(SpringLayout.EAST, sundryTxtField, 0, SpringLayout.EAST, arrangedByCombo);
 		getContentPane().add(sundryTxtField);
 		sundryTxtField.setColumns(10);
 		
@@ -125,7 +125,7 @@ public class TripDialog extends JDialog {
 				tripCounter = instanceCounter; // Sets the tripCounter variable equal to instanceCounter
 
 				defModel.addRow(new Object[]{tripCounter,tripTypeCombo.getSelectedItem(), arrangedByCombo.getSelectedItem(), 
-						transportTxtField.getText(), venueTxtField.getText(), sundryTxtField.getText()});
+						transportTxtField.getText(), venueTxtField.getText(), accommodationTxtField.getText(), sundryTxtField.getText()});
 				// Adds all of the data held in the text fields/combo boxes to defModel
 				dispose(); // Closes the window
 			}
@@ -133,6 +133,18 @@ public class TripDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.NORTH, btnAddTrip, 0, SpringLayout.NORTH, btnClose);
 		springLayout.putConstraint(SpringLayout.EAST, btnAddTrip, -5, SpringLayout.WEST, btnClose);
 		getContentPane().add(btnAddTrip);
+		
+		JLabel lblAccommodation = new JLabel("Accommodation:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblSundryCosts, 21, SpringLayout.SOUTH, lblAccommodation);
+		springLayout.putConstraint(SpringLayout.NORTH, lblAccommodation, 17, SpringLayout.SOUTH, venueTxtField);
+		springLayout.putConstraint(SpringLayout.WEST, lblAccommodation, 0, SpringLayout.WEST, lblTripType);
+		getContentPane().add(lblAccommodation);
+		
+		accommodationTxtField = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, accommodationTxtField, -3, SpringLayout.NORTH, lblAccommodation);
+		springLayout.putConstraint(SpringLayout.WEST, accommodationTxtField, 6, SpringLayout.EAST, lblAccommodation);
+		getContentPane().add(accommodationTxtField);
+		accommodationTxtField.setColumns(10);
 		
 	}
 }
